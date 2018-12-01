@@ -61,7 +61,7 @@ class Booking:
         return optimized_min_room
 
 
-booking = Booking(3, 4, 7)
+booking = Booking(3, 4, 3)
 optimized_min_room = booking.assign_room()
 room_mapping = booking.get_room_mapping(optimized_min_room)
 print('The optimized number of room(s): ', optimized_min_room)
