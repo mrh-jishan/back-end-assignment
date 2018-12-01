@@ -1,9 +1,9 @@
 class Room:
     def __init__(self, adults, children, infants):
-        # if adults > 3: raise ValueError('Max 3 adults allowed')
-        # if children > 3: raise ValueError('Max 3 children allowed')
-        # if infants > 3: raise ValueError('Max 3 infants allowed')
-        # if adults < 1: raise Exception('Minimum 1 adult is required, No room will have only children or infants')
+        if adults > 3: raise ValueError('Max 3 adults allowed')
+        if children > 3: raise ValueError('Max 3 children allowed')
+        if infants > 3: raise ValueError('Max 3 infants allowed')
+        if adults < 1: raise Exception('Minimum 1 adult is required, No room will have only children or infants')
         self.adults = adults
         self.children = children
         self.infants = infants
@@ -27,8 +27,8 @@ class Booking:
 
     def get_room_mapping(self, optimized_min_room):
         room_list = []
-        a = optimized_min_room
-        while a:
+        index = optimized_min_room
+        while index:
             ad = int(self.adults / optimized_min_room) + 1 if (not (self.adults % optimized_min_room) == 0) and len(
                 room_list) == 0 else int(
                 self.adults / optimized_min_room)
@@ -40,7 +40,7 @@ class Booking:
                 self.infants / optimized_min_room)
 
             room_list.append(Room(ad, ch, inf).__dict__)
-            a -= 1
+            index -= 1
 
         return room_list
 
@@ -66,4 +66,3 @@ optimized_min_room = booking.assign_room()
 room_mapping = booking.get_room_mapping(optimized_min_room)
 print('The optimized number of room(s): ', optimized_min_room)
 print('The optimized room(s) mapping: ', room_mapping)
-# print(room_details)
