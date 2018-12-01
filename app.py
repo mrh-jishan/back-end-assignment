@@ -1,3 +1,6 @@
+import getopt, sys
+
+
 class Room:
     def __init__(self, adults, children, infants):
         if adults > 3: raise ValueError('Max 3 adults allowed')
@@ -61,8 +64,14 @@ class Booking:
         return optimized_min_room
 
 
-booking = Booking(3, 4, 3)
-optimized_min_room = booking.assign_room()
-room_mapping = booking.get_room_mapping(optimized_min_room)
-print('The optimized number of room(s): ', optimized_min_room)
-print('The optimized room(s) mapping: ', room_mapping)
+if __name__ == '__main__':
+    try:
+        a, c, i = sys.argv[1:]
+        booking = Booking(int(a), int(c), int(i))
+        optimized_min_room = booking.assign_room()
+        room_mapping = booking.get_room_mapping(optimized_min_room)
+        print('The optimized number of room(s): ', optimized_min_room)
+        print('The optimized room(s) mapping: ', room_mapping)
+    except getopt.error as err:
+        print(str(err))
+        sys.exit(2)
