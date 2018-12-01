@@ -28,11 +28,18 @@ class Booking:
     def assign_room(self):
         max_room_children = int(self.children / 3) if (self.children % 3) == 0 else int(self.children / 3) + 1
         max_room_infants = int(self.infants / 3) if (self.infants % 3) == 0 else int(self.infants / 3) + 1
-        max_room_adult = int(self.adults / 3) if (self.adults % 3) == 0 else int(self.adults / 3) + 1
-
         max_room = max_room_children if max_room_children >= max_room_infants else max_room_infants
-        if (self.adults < max_room): raise Exception('No room will have only children or infants')
-        max_room = max_room if max_room >= max_room_adult else max_room_adult
+        if max_room>3 : raise Exception('Per booking maximum number of rooms will be only 3')
+
+        print('max room---------------------------', max_room)
+
+
+
+        # max_room_adult = int(self.adults / 3) if (self.adults % 3) == 0 else int(self.adults / 3) + 1
+
+
+        # if (self.adults < max_room): raise Exception('No room will have only children or infants')
+        # max_room = max_room if max_room >= max_room_adult else max_room_adult
 
         # room_list = []
         # booking1 = {1: Room(3, 3, 3)}
@@ -42,9 +49,9 @@ class Booking:
         # room_list.append(booking2)
         # print(booking1.__dict__)
         # total_room_adult = (self._adults % 3) if (self._adults % 3) == 0 else (self._adults % 3) + 1
-        return dict({'total_room': max_room})
+        # return dict({'total_room': max_room})
 
 
 booking = Booking(7, 0, 14)
 room_details = booking.assign_room()
-print(room_details)
+# print(room_details)
